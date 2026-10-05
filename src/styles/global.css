@@ -210,6 +210,14 @@ summary {
 [data-theme="dark"] img[src*="placeholder"] {
   filter: brightness(0.8);
 }
+/* O ícone do avatar é cinza escuro com ~55% de opacidade: no fundo escuro some.
+   O brightness() clareia a cor, mas não mexe no alfa — os drop-shadow sem
+   deslocamento empilham cópias do traço e o deixam quase opaco. Filtro em img também
+   atinge o background dela, então ele fica transparente e o círculo vem do pai. */
+[data-theme="dark"] img[src*="people-placeholder"] {
+  background-color: transparent !important;
+  filter: brightness(2.5) drop-shadow(0 0 0 #dfe7e1) drop-shadow(0 0 0 #dfe7e1);
+}
 
 @media (hover: hover) {
   [data-theme="dark"] .hover\:bg-gray-100:hover {

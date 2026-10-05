@@ -159,12 +159,19 @@ const categoryLabels = {
         {project.people
           ?.slice(0, 4)
           .sort((a, b) => a.data.name.full.localeCompare(b.data.name.full))
-          .map((person) => (
+          .map((person, index) => (
             <a
               href={`/projects/people/${getFirstPersonId(person)}/`}
-              title={person.data.name.full}
-              class="rounded-full ring-2 ring-white"
+              class="group/avatar relative rounded-full bg-gray-200 ring-2 ring-white hover:z-50! focus-visible:z-50!"
+              style={`z-index: ${index + 1}`}
             >
+              <span
+                aria-hidden="true"
+                class="pointer-events-none invisible absolute bottom-full left-0 mb-2 w-max max-w-48 rounded-md bg-gray-950/95 px-2 py-1 text-[11px] font-semibold text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover/avatar:visible group-hover/avatar:opacity-100 group-focus-visible/avatar:visible group-focus-visible/avatar:opacity-100"
+              >
+                {person.data.name.full}
+                <span class="absolute top-full left-3 -mt-px border-4 border-transparent border-t-gray-950/95" />
+              </span>
               <Image
                 src={peoplePlaceholder}
                 alt={person.data.name.full}
